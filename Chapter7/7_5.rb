@@ -1,8 +1,9 @@
-puts "Would you like to sing 99 Bottles of Beer or try to speak to Grandma?"
-puts "Enter \'Beer\' or \'Grandma\'"
+puts "Would you like to sing 99 Bottles of Beer, try to speak to Grandma, or find Leap Years in a given range?"
+puts "Enter \'Beer\', \'Grandma\', or \'Leap\'"
 choice = gets.chomp.capitalize
 
-if choice == 'Beer'
+case choice
+when 'Beer'
 
 	# 99 Bottles of Beer on the wall
 	puts 'How many bottles of beer are on the wall?'
@@ -12,7 +13,9 @@ if choice == 'Beer'
 		beers -= 1 
 		puts 'Take one down, pass it around, ' + beers.to_s + ' bottles of beer on the wall!'
 	end
-elsif choice == 'Grandma'
+
+when 'Grandma'
+	# Deaf Grandma Extended
 	while true
 		puts 'WHAT DO YOU WANT, BOY?!'
 	  response = gets.chomp
@@ -41,7 +44,25 @@ elsif choice == 'Grandma'
 			  end
 		end
 	end
+
+when "Leap"
+	puts 'Lets find the leap years in a given time range.'
+	puts 'What is the lower bound?'
+	lower_bound = gets.chomp.to_i
+	puts 'What is the upper bound?'
+	upper_bound = gets.chomp.to_i
+	year_range = (lower_bound..upper_bound).to_a
+	year_range.each do |y|
+		if y % 100 != 0 && y % 4 == 0
+			puts y
+		else
+		end
+	end
+
+else
+	puts "I didn't understand that."
 end
+
 
 
 		
