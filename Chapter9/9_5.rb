@@ -47,28 +47,43 @@ case choice
 		old_roman_numeral number
 
 	when 'newroman'
-		def new_roman_numeral number
-			while true
-				if number < 3000
-					puts 'Calculating...'
-					m = number / 1000
-					d = (number % 1000) / 500
-					c = ((number % 1000) % 500) / 100
-					l = (((number % 1000) % 500) % 100) / 50
-					x = ((((number % 1000) % 500) % 100) % 50) / 10
-					v = (((((number % 1000) % 500) % 100) % 50) % 10) / 5
-					i = ((((((number % 1000) % 500) % 100) % 50) % 10) % 5)
-					numeral_array = [m, d, c, l, x, v, i]
-					m_mod = number % 1000
-					d_mod = number % 500
-					c_mod = number % 100
-					l_mod = number % 50
-					x_mod = number % 10
-					v_mod = number % 5
-					mod_array = [m_mod, d_mod, c_mod, l_mod, x_mod, v_mod]
+		def new_roman_numeral num
+			raise 'Must use positive integer' if num <= 0
 
-					numeral_array.each do |n|
-						if n
+			digit_vals = [['I',    5,     1]
+		                ['V',   10,     5]
+		                ['X',   50,    10]
+		                ['L',  100,    50]
+		              	['C',  500,   100]
+		              	['D', 1000,   500]
+		                ['M',  nil,  1000]]
+
+		  roman = ''
+		  remaining = nil
+
+		  # Build string "roman" in revers
+		  build_rev = proc do |l,m,n|
+		  	num_l = m ? (num % m / n) : (num / n)
+		  	full = m && (num_l == (m/n - 1))
+		  	  if full && (num_l>1 || remaining)
+		  	  	# must carry
+		  	  	remaining ||= 1 #carry l if not already carrying
+		  	  else
+		  	  	if remaining
+		  	  		roman << l + remaining
+		  	  		remaining = nil
+		  	  	end
+
+		  	  	roman << l * num_l
+		  	  end
+		  	end
+
+		  	digit_vals.each {|l,m,n| build_rev[l,m,n]}
+
+		  	roman.reverse
+		  end
+
+
 
 
 
