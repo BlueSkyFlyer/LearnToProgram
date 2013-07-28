@@ -18,7 +18,7 @@ when 'Grandma'
 	# Deaf Grandma Extended
 	while true
 		puts 'WHAT DO YOU WANT, BOY?!'
-	  response = gets.chomp
+	    response = gets.chomp
 		while response != response.upcase 
 			puts 'HUH?! SPEAK UP SONNY!'
 			response = gets.chomp
