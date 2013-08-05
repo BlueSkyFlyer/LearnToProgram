@@ -1,0 +1,6 @@
+puts(42.class)
+puts("I'll have mayonnaise on mine!".class)
+puts(Time.new.class) #no shocker here
+puts(Time.class)  # A little more interesting...
+puts(String.class) # ok...
+puts(Class.class) 
